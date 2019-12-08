@@ -31,9 +31,13 @@
 
 当学生输入正确的用户名和密码时和权限连接到学生界面，进行选课和查看课程操作，如果用户名和密码错误有提示。
 
-老师
+2.管理员admin 密码admin
 
-当老师输入正确的用户名和密码时和权限连接到学生界面，进行选课和查看课程操作，如果用户名和密码错误有提示。
+当管理员输入正确的用户名和密码时和权限连接到界面，进行增添课程、删除课程、更新、打印课程信息和查看课程操作，如果用户名和密码错误有提示。
+
+3.初始化学生信息
+
+在users里设置账号密码，以空格分隔
 
 四、实验流程图
 
@@ -41,6 +45,27 @@
 
 五、核心代码
 
+public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					PrintStream printStream = new PrintStream("所有学生的选课信息.txt");
+					System.out.println("user............."+users);
+					for(User user: users) {
+						printStream.println("学生："+user.getUsername()+"    选课信息：");
+						Set<Custom> set = user.getSet();
+						for (Custom custom : set) {
+							printStream.println(custom);
+						}
+						printStream.println("---------------------------------------");
+					}
+					printStream.close();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+  
 六、程序运行截图
 
 见附件
